@@ -12,6 +12,8 @@
 
         public Country Country { get; set; }
 
+        public Author Author { get; set; }
+
         public ICollection<Review> Reviews { get; set; }
 
         public ICollection<AnimeGenre> AnimeGenres { get; set; } 

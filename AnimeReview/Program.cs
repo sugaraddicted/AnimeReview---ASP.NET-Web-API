@@ -1,4 +1,6 @@
 using AnimeReview.Data;
+using AnimeReview.Interfaces;
+using AnimeReview.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<DataInitializer>();
+builder.Services.AddScoped<IAnimeRepository, AnimeRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

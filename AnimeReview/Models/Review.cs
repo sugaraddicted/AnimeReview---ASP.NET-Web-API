@@ -11,5 +11,7 @@
         public Reviewer Reviewer { get; set; }
 
         public Anime Anime { get; set; }
+
+        public decimal Rating { get; set; } 
     }
 }

@@ -31,19 +31,22 @@ namespace AnimeReview.Data
                                     {
                                         Title = "Chainsaw Man review",
                                         Text = "Imagine this. You are about to watch a series sold as a hectic action with unexpected twists and chaotic energy. You are about to watch a series that has been declared revolutionary in its genre, a series that manipulated tropes to create something unique and distinguishable. Captivating, emotional, intelligent, entertaining, juvenile. Then, when you are about to watch the show, you see a fraudulent cinematic attempt with a disgusting production, a derivative storyline, and pathetic comedic timing. Yes, this happened. Yes, this is Chainsaw Man.",
-                                        Reviewer = new Reviewer() { FullName = "Teddy Smith", NickName = "Gween_Gween" }
+                                        Reviewer = new Reviewer() { FullName = "Teddy Smith", NickName = "Gween_Gween" },
+                                        Rating = 10
                                     },
                                     new Review
                                     {
                                         Title = "Chainsaw Man review",
                                         Text = "Chainsaw man is an action packed comedy and a mystery/horror anime with a spectrum of interesting characters and an amazing story that gets deeper as it progresses which makes it stand out above any other similar anime of the same genre.",
-                                        Reviewer = new Reviewer() { FullName = "Nick Smith", NickName = "I-Watch-Anime" }
+                                        Reviewer = new Reviewer() { FullName = "Nick Smith", NickName = "I-Watch-Anime" },
+                                        Rating = 9
                                     },
                                     new Review
                                     {
                                         Title = "Chainsaw Man review",
                                         Text = "Why Chainsaw Man would even have a tad of bad reputation is baffling to me: it is close to being a perfect Shounen. While there are still definitely flaws, I can say with confidence that there are no deal-breakers in the series, as long as you are an anime fan.",
-                                        Reviewer = new Reviewer() { FullName = "Tom Teddy", NickName = "rrakku" }
+                                        Reviewer = new Reviewer() { FullName = "Tom Teddy", NickName = "rrakku" },
+                                        Rating = 10
                                     },
 
                                 },
@@ -79,19 +82,22 @@ namespace AnimeReview.Data
                                     {
                                         Title = "Monster review",
                                         Text = "Monster plays out like a macabre game of cat and mouse in a world that is frighteningly similar to real life. Uncomfortable subjects such as coercive human conditioning and the psychology of the sociopath, morality issues regarding the origin of evil and the value of human life, are horrifyingly, yet engagingly, realized.",
-                                        Reviewer = new Reviewer() { FullName = "Teddy Smith", NickName = "Gween_Gween" }
+                                        Reviewer = new Reviewer() { FullName = "Walter White", NickName = "wiwi" },
+                                        Rating = 8
                                     },
                                     new Review
                                     {
                                         Title = "Monster review",
                                         Text = "If you've heard of Monster, then odds are you've probably heard of the incredible hype surrounding it. For a while, Monster has been the absolute critic's darling of anime, being the poster-boy for lofty intellectual types. Because of this, it can be very easy to imagine Monster as being overhyped.",
-                                        Reviewer = new Reviewer() { FullName = "Nick Smith", NickName = "I-Watch-Anime" }
+                                        Reviewer = new Reviewer() { FullName = "Jesse Pinkman", NickName = "Anime_enjoyer" },
+                                        Rating = 10
                                     },
                                     new Review
                                     {
                                         Title = "Monster review",
                                         Text = "Those who have seen Monster can attest collectively (whether they liked it or not) to how incredibly uncomfortable and unconventional this show is. The topic of evil is proactively exploited through revealing the extent of human depravity in conjunction with exploring matters like child abuse, mass murder, collective brainwashing, human experimentation, the value of life, and so much more.",
-                                        Reviewer = new Reviewer() { FullName = "Tom Teddy", NickName = "rrakku" }
+                                        Reviewer = new Reviewer() { FullName = "Laura Fraser", NickName = "akuma" },
+                                        Rating = 10
                                     },
 
                                 },
@@ -128,19 +134,22 @@ namespace AnimeReview.Data
                                     {
                                         Title = "JoJo no Kimyou na Bouken Part 5: Ougon no Kaze review",
                                         Text = "As I sat and finished watching the 39-episode saga of Jojo’s Bizarre Adventure: Golden Wind, I had a small tear in my eye. It’s aftermath result of this extraordinary adventure.",
-                                        Reviewer = new Reviewer() { FullName = "Teddy Smith", NickName = "Gween_Gween" }
+                                        Reviewer = new Reviewer() { FullName = "Anna Gunn", NickName = "anna_gun" },
+                                        Rating = 10
                                     },
                                     new Review
                                     {
                                         Title = "JoJo no Kimyou na Bouken Part 5: Ougon no Kaze review",
                                         Text = "This fifth instalment of JoJo tells, of a group of boys in search of justice and a world that, thanks to them and their heroism, will begin to change for the better. Boys who live, sacrifice themselves, fight against an apparently incontrovertible destiny, bringing with them an resolute spirit, a golden wind that blows away the injustices from the world.",
-                                        Reviewer = new Reviewer() { FullName = "Nick Smith", NickName = "I-Watch-Anime" }
+                                        Reviewer = new Reviewer() { FullName = "Marie Schrader", NickName = "nickname" },
+                                        Rating = 7
                                     },
                                     new Review
                                     {
                                         Title = "JoJo no Kimyou na Bouken Part 5: Ougon no Kaze review",
                                         Text = "If I could recommend a show that isn't too long but has a great story with characters that go through hell and back for each other while just deliver just an overall great experience I would recommend Golden Wind.",
-                                        Reviewer = new Reviewer() { FullName = "Tom Teddy", NickName = "rrakku" }
+                                        Reviewer = new Reviewer() { FullName = "Dean Norris", NickName = "narutofun" },
+                                        Rating = 9
                                     },
 
                                 },

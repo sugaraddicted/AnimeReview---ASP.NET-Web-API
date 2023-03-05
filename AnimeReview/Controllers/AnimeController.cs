@@ -1,5 +1,7 @@
-﻿using AnimeReview.Interfaces;
+﻿using AnimeReview.Dto;
+using AnimeReview.Interfaces;
 using AnimeReview.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimeReview.Controllers
@@ -9,15 +11,19 @@ namespace AnimeReview.Controllers
     public class AnimeController : Controller
     {
         private readonly IAnimeRepository _animeRepository;
-        public AnimeController(IAnimeRepository animeRepository)
+
+        private readonly IMapper _mapper;
+
+        public AnimeController(IAnimeRepository animeRepository, IMapper mapper)
         {
             _animeRepository = animeRepository; 
+            _mapper = mapper;
         }
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Anime>))]
         public IActionResult GetAnimes()
         {
-            var animes = _animeRepository.GetAnimes();
+            var animes = _mapper.Map<List<AnimeDto>>(_animeRepository.GetAnimes());
 
             if (!ModelState.IsValid)
                     return BadRequest(ModelState);
@@ -32,7 +38,7 @@ namespace AnimeReview.Controllers
         {
             if (!_animeRepository.AnimeExists(animeId))
                 return NotFound();
-            var anime = _animeRepository.GetAnimeById(animeId);
+            var anime = _mapper.Map<AnimeDto>(_animeRepository.GetAnimeById(animeId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

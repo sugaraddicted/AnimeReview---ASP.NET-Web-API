@@ -8,6 +8,6 @@
 
         public string Bio { get; set; }
 
-        public ICollection<Anime> Animes { get; set; }
+        public ICollection<Anime>? Animes { get; set; }
     }
 }

@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public ICollection<Anime> Animes { get; set; }
+        public ICollection<Anime>? Animes { get; set; }
     }
 }

@@ -53,7 +53,7 @@ namespace AnimeReview.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Anime");
+                    b.ToTable("Anime", (string)null);
                 });
 
             modelBuilder.Entity("AnimeReview.Models.AnimeGenre", b =>
@@ -68,7 +68,7 @@ namespace AnimeReview.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("AnimeGenres");
+                    b.ToTable("AnimeGenres", (string)null);
                 });
 
             modelBuilder.Entity("AnimeReview.Models.Author", b =>
@@ -89,7 +89,7 @@ namespace AnimeReview.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("AnimeReview.Models.Country", b =>
@@ -106,7 +106,7 @@ namespace AnimeReview.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries");
+                    b.ToTable("Countries", (string)null);
                 });
 
             modelBuilder.Entity("AnimeReview.Models.Genre", b =>
@@ -127,7 +127,7 @@ namespace AnimeReview.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("AnimeReview.Models.Review", b =>
@@ -161,7 +161,7 @@ namespace AnimeReview.Migrations
 
                     b.HasIndex("ReviewerId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("AnimeReview.Models.Reviewer", b =>
@@ -182,7 +182,7 @@ namespace AnimeReview.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reviewers");
+                    b.ToTable("Reviewers", (string)null);
                 });
 
             modelBuilder.Entity("AnimeReview.Models.Anime", b =>

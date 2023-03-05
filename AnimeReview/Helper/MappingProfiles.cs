@@ -13,6 +13,8 @@ namespace AnimeReview.Helper
             CreateMap<Genre, GenreDto>();
 
             CreateMap<Country, CountryDto>();
+
+            CreateMap<Author, AuthorDto>();
         }
     }
 }

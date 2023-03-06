@@ -13,6 +13,12 @@ namespace AnimeReview.Repository
             _context = context;
         }
 
+        public bool CreateGenre(Genre genre)
+        {
+            _context.Add(genre);
+            return Save();
+        }
+
         public bool GenreExists(int id)
         {
             return _context.Genres.Any(x => x.Id == id);    
@@ -31,6 +37,12 @@ namespace AnimeReview.Repository
         public ICollection<Genre> GetGenres()
         {
             return _context.Genres.ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

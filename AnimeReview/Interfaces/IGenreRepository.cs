@@ -11,5 +11,9 @@ namespace AnimeReview.Interfaces
         ICollection<Anime> GetAnimeByGenreId(int genreId);
 
         bool GenreExists(int id);
+
+        bool CreateGenre(Genre genre);
+
+        bool Save();
     }
 }

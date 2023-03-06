@@ -16,6 +16,8 @@ namespace AnimeReview.Helper
 
             CreateMap<Country, CountryDto>();
 
+            CreateMap<CountryDto, Country>();
+
             CreateMap<Author, AuthorDto>();
 
             CreateMap<Review, ReviewDto>();

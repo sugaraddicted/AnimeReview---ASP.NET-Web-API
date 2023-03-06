@@ -42,5 +42,30 @@ namespace AnimeReview.Repository
         {
             return _context.Anime.Any(p => p.Id == animeId);
         }
+
+        public bool CreateAnime(int genreId, string authorName, string countryName, Anime anime)
+        {
+            var animeGenreEntity = _context.Genres.Where(g => g.Id == genreId).FirstOrDefault();
+
+            anime.Author = _context.Authors.Where(a => a.Name == authorName).FirstOrDefault();
+            anime.Country = _context.Countries.Where(c => c.Name == countryName).FirstOrDefault();
+
+            var asnimeGenre = new AnimeGenre()
+            {
+                Genre = animeGenreEntity,
+                Anime = anime   
+            };
+
+            _context.Add(asnimeGenre);
+            _context.Add(anime);
+
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var save = _context.SaveChanges();
+            return save > 0 ? true : false;
+        }
     }
 }

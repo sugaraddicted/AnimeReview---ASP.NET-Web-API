@@ -9,6 +9,7 @@ namespace AnimeReview.Helper
         public MappingProfiles()
         {
             CreateMap<Anime, AnimeDto>();
+            CreateMap<AnimeDto, Anime>();
 
             CreateMap<Genre, GenreDto>();
             CreateMap<GenreDto, Genre>();
@@ -23,6 +24,7 @@ namespace AnimeReview.Helper
             CreateMap<ReviewDto, Review>();
             
             CreateMap<Reviewer, ReviewerDto>();
+            CreateMap<ReviewerDto, Reviewer>();
         }
     }
 }

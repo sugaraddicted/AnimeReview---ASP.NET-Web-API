@@ -13,5 +13,9 @@ namespace AnimeReview.Interfaces
         decimal GetAnimeRating(int animeId);
 
         bool AnimeExists(int animeId);  
+
+        bool CreateAnime(int genreId, string authorname, string countryName, Anime anime);
+
+        bool Save();
     }
 }

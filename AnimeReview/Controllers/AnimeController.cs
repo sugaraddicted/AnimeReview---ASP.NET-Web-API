@@ -1,6 +1,7 @@
 ﻿using AnimeReview.Dto;
 using AnimeReview.Interfaces;
 using AnimeReview.Models;
+using AnimeReview.Repository;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,6 +61,38 @@ namespace AnimeReview.Controllers
                 return BadRequest();
 
             return Ok(rating);  
+        }
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateAnime([FromQuery] int genreId, [FromQuery] string authorName, [FromQuery] string countryName, [FromBody] AnimeDto animeCreate)
+        {
+            if (animeCreate == null)
+                return BadRequest(ModelState);
+
+            var animes = _animeRepository.GetAnimes()
+                .Where(a => a.Name.Trim().ToUpper() == animeCreate.Name.TrimEnd().ToUpper())
+                .FirstOrDefault();
+
+            if (animes != null)
+            {
+                ModelState.AddModelError("", "Genre already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var animeMap = _mapper.Map<Anime>(animeCreate);
+
+            if (!_animeRepository.CreateAnime(genreId, authorName,countryName, animeMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
         }
     }
 }

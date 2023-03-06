@@ -60,5 +60,36 @@ namespace AnimeReview.Controllers
             return Ok(reviews);
         }
 
+        [HttpPost]
+        [ProducesResponseType(208)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateReview([FromBody]ReviewDto reviewCreate)
+        {
+            if(reviewCreate == null)
+                return BadRequest(ModelState);
+
+
+            var review = _reviewRepository.GetReviews()
+                .Where(r => r.Text.Trim().ToUpper() == reviewCreate.Text.TrimEnd())
+                .FirstOrDefault();
+
+            if(review != null)
+            {
+                ModelState.AddModelError("", "Review already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            var reviewMap = _mapper.Map<Review>((reviewCreate));
+
+            if (!_reviewRepository.CreateReview(reviewMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+
+        }
+
     }
 }

@@ -20,6 +20,7 @@ namespace AnimeReview.Helper
             CreateMap<AuthorDto, Author>();
 
             CreateMap<Review, ReviewDto>();
+            CreateMap<ReviewDto, Review>();
             
             CreateMap<Reviewer, ReviewerDto>();
         }

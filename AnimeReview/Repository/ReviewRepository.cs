@@ -12,7 +12,13 @@ namespace AnimeReview.Repository
         {
             _context = context;
         }
-    
+
+        public bool CreateReview(Review review)
+        {
+            _context.SaveChanges();
+            return Save();
+        }
+
         public Review GetReviewById(int id)
         {
             return _context.Reviews.Where(r => r.Id == id).FirstOrDefault();
@@ -31,6 +37,12 @@ namespace AnimeReview.Repository
         public bool ReviewExists(int id)
         {
             return _context.Reviews.Any(r => r.Id == id);   
+        }
+
+        public bool Save()
+        {
+            var save = _context.SaveChanges();
+            return save > 0 ? true : false;
         }
     }
 }

@@ -12,5 +12,9 @@ namespace AnimeReview.Interfaces
 
         bool AuthorExists(int id);
 
+        bool CreateAuthor(Author author);
+
+        bool Save();
+
     }
 }

@@ -61,5 +61,38 @@ namespace AnimeReview.Controllers
             return Ok(animes);
         }
 
+
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateAuthor([FromBody] AuthorDto authorCreate)
+        {
+            if (authorCreate == null)
+                return BadRequest(ModelState);
+
+            var author = _authorRepository.GetAuthors()
+                .Where(c => c.Name.Trim().ToUpper() == authorCreate.Name.TrimEnd().ToUpper())
+                .FirstOrDefault();
+
+            if (author != null)
+            {
+                ModelState.AddModelError("", "Author already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var authorMap = _mapper.Map<Author>(authorCreate);
+
+            if (!_authorRepository.CreateAuthor(authorMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
+
     }
 }

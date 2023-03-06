@@ -73,11 +73,11 @@ namespace AnimeReview.Controllers
             if (countryCreate == null)
                 return BadRequest(ModelState);
 
-            var country = _countryRepository.GetCountries()
+            var genre = _countryRepository.GetCountries()
                 .Where(c => c.Name.Trim().ToUpper() == countryCreate.Name.TrimEnd().ToUpper())
                 .FirstOrDefault();
 
-            if (country != null)
+            if (genre != null)
             {
                 ModelState.AddModelError("", "Country already exists");
                 return StatusCode(422, ModelState);

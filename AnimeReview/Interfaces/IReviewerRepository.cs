@@ -12,9 +12,5 @@ namespace AnimeReview.Interfaces
 
         bool ReviewerExists(int id);
 
-        bool CreateReviewer(Reviewer reviewer);
-
-        bool Save();
-
     }
 }

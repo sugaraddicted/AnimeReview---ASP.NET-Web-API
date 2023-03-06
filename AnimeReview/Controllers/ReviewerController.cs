@@ -18,7 +18,7 @@ namespace AnimeReview.Controllers
         public ReviewerController(IReviewerRepository reviewerRepository, IMapper mapper)
         {
             _reviewerRepository = reviewerRepository;
-            _mapper = mapper;
+            _mapper = mapper;   
         }
 
         [HttpGet]
@@ -63,36 +63,7 @@ namespace AnimeReview.Controllers
             return Ok(reviews);
         }
 
-        [HttpPost]
-        [ProducesResponseType(208)]
-        [ProducesResponseType(400)]
-        public IActionResult CreateReviewer([FromBody] ReviewerDto reviewerCreate)
-        {
-            if (reviewerCreate == null)
-                return BadRequest(ModelState);
 
 
-            var reviewer = _reviewerRepository.GetReviewers()
-                .Where(r => r.NickName.Trim().ToUpper() == reviewerCreate.NickName.TrimEnd())
-                .FirstOrDefault();
-
-            if (reviewer != null)
-            {
-                ModelState.AddModelError("", "Reviewer already exists");
-                return StatusCode(422, ModelState);
-            }
-
-            var reviewMap = _mapper.Map<Reviewer>((reviewerCreate));
-
-            if (!_reviewerRepository.CreateReviewer(reviewMap))
-            {
-                ModelState.AddModelError("", "Something went wrong while saving");
-                return StatusCode(500, ModelState);
-            }
-
-            return Ok("Successfully created");
-
-        }
-      }
     }
-
+}

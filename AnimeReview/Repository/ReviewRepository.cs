@@ -15,7 +15,7 @@ namespace AnimeReview.Repository
 
         public bool CreateReview(Review review)
         {
-            _context.SaveChanges();
+            _context.Reviews.Add(review);
             return Save();
         }
 
@@ -44,5 +44,6 @@ namespace AnimeReview.Repository
             var save = _context.SaveChanges();
             return save > 0 ? true : false;
         }
+
     }
 }

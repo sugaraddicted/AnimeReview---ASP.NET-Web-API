@@ -12,11 +12,15 @@ namespace AnimeReview.Controllers
     public class ReviewController : Controller
     {
         private readonly IReviewRepository _reviewRepository;
+        private readonly IAnimeRepository _animeRepository;
+        private readonly IReviewerRepository _reviewerRepository;
         private readonly IMapper _mapper;
 
-        public ReviewController(IReviewRepository reviewRepository, IMapper mapper)
+        public ReviewController(IReviewRepository reviewRepository, IAnimeRepository animeRepository, IReviewerRepository reviewerRepository, IMapper mapper)
         {
-            _reviewRepository = reviewRepository;   
+            _reviewRepository = reviewRepository;  
+            _animeRepository = animeRepository;
+            _reviewerRepository = reviewerRepository;
             _mapper = mapper;
         }
 
@@ -60,26 +64,33 @@ namespace AnimeReview.Controllers
             return Ok(reviews);
         }
 
+
         [HttpPost]
-        [ProducesResponseType(208)]
+        [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateReview([FromBody]ReviewDto reviewCreate)
+        public IActionResult CreateReview([FromQuery] int reviewerId, [FromQuery] int animeId, [FromBody] ReviewDto reviewCreate)
         {
-            if(reviewCreate == null)
+            if (reviewCreate == null)
                 return BadRequest(ModelState);
 
-
-            var review = _reviewRepository.GetReviews()
-                .Where(r => r.Text.Trim().ToUpper() == reviewCreate.Text.TrimEnd())
+            var reviews = _reviewRepository.GetReviews()
+                .Where(c => c.Title.Trim().ToUpper() == reviewCreate.Title.TrimEnd().ToUpper())
                 .FirstOrDefault();
 
-            if(review != null)
+            if (reviews != null)
             {
                 ModelState.AddModelError("", "Review already exists");
                 return StatusCode(422, ModelState);
             }
 
-            var reviewMap = _mapper.Map<Review>((reviewCreate));
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var reviewMap = _mapper.Map<Review>(reviewCreate);
+
+            reviewMap.Anime = _animeRepository.GetAnimeById(animeId);
+            reviewMap.Reviewer = _reviewerRepository.GetReviewerById(reviewerId);
+
 
             if (!_reviewRepository.CreateReview(reviewMap))
             {
@@ -88,7 +99,6 @@ namespace AnimeReview.Controllers
             }
 
             return Ok("Successfully created");
-
         }
 
     }

@@ -14,6 +14,8 @@ namespace AnimeReview.Interfaces
 
         bool CreateCountry(Country country);
 
+        bool UpdateCountry(Country country);
+
         bool Save();
     }
 }

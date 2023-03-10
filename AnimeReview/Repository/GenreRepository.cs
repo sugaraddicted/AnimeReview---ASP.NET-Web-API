@@ -44,5 +44,11 @@ namespace AnimeReview.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateGenre(Genre genre)
+        {
+            _context.Update(genre);
+            return Save();
+        }
     }
 }

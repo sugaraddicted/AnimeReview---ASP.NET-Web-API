@@ -82,9 +82,9 @@ namespace AnimeReview.Controllers
                 return StatusCode(422, ModelState);
             }
 
-            var reviewMap = _mapper.Map<Reviewer>((reviewerCreate));
+            var reviewerMap = _mapper.Map<Reviewer>((reviewerCreate));
 
-            if (!_reviewerRepository.CreateReviewer(reviewMap))
+            if (!_reviewerRepository.CreateReviewer(reviewerMap))
             {
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);

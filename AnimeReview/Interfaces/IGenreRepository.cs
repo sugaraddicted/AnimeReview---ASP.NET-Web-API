@@ -15,5 +15,7 @@ namespace AnimeReview.Interfaces
         bool CreateGenre(Genre genre);
 
         bool Save();
+
+        bool UpdateGenre(Genre genre);
     }
 }

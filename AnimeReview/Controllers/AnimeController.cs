@@ -77,7 +77,7 @@ namespace AnimeReview.Controllers
 
             if (animes != null)
             {
-                ModelState.AddModelError("", "Genre already exists");
+                ModelState.AddModelError("", "Anime already exists");
                 return StatusCode(422, ModelState);
             }
 

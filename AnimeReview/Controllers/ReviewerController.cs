@@ -13,11 +13,13 @@ namespace AnimeReview.Controllers
     public class ReviewerController : Controller
     {
         private readonly IReviewerRepository _reviewerRepository;
+        private readonly IReviewRepository _reviewRepository;
         private readonly IMapper _mapper;
 
-        public ReviewerController(IReviewerRepository reviewerRepository, IMapper mapper)
+        public ReviewerController(IReviewerRepository reviewerRepository, IReviewRepository reviewRepository, IMapper mapper)
         {
             _reviewerRepository = reviewerRepository;
+            _reviewRepository = reviewRepository;
             _mapper = mapper;
         }
 
@@ -123,6 +125,41 @@ namespace AnimeReview.Controllers
 
             return Ok("Successfully Updated");
         }
+
+
+        [HttpDelete("{reviewerId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteReviewer(int reviewerId)
+        {
+            if (!_reviewerRepository.ReviewerExists(reviewerId))
+            {
+                return NotFound();
+            }
+
+            if (_reviewRepository.GetReviewsOfReviewer(reviewerId).Any())
+            {
+                var reviewsToDelete = _reviewRepository.GetReviewsOfReviewer(reviewerId);
+
+                if (!_reviewRepository.DeleteReviews(reviewsToDelete.ToList()))
+                {
+                    ModelState.AddModelError("", "Something went wrong deleting reviewer");
+                }
+            }
+
+            var reviewerToDelete = _reviewerRepository.GetReviewerById(reviewerId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_reviewerRepository.DeleteReviewer(reviewerToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting reviewer");
+            }
+
+            return Ok("Successfully Deleted");
+        }
     }
-    }
+}
 

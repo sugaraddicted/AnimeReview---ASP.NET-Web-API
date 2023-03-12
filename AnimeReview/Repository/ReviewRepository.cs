@@ -46,6 +46,11 @@ namespace AnimeReview.Repository
             return _context.Reviews.Where(r => r.Anime.Id == animeId).ToList();
         }
 
+        public ICollection<Review> GetReviewsOfReviewer(int reviewerId)
+        {
+            return _context.Reviews.Where(r => r.Reviewer.Id == reviewerId).ToList();
+        }
+
         public bool ReviewExists(int id)
         {
             return _context.Reviews.Any(r => r.Id == id);   

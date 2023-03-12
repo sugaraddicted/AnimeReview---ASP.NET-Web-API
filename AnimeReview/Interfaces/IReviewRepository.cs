@@ -11,6 +11,8 @@ namespace AnimeReview.Interfaces
 
         ICollection<Review> GetReviewsOfAnime(int animeId);
 
+        ICollection<Review> GetReviewsOfReviewer(int reviewerId);
+
         bool ReviewExists(int id);
 
         bool CreateReview(Review review);

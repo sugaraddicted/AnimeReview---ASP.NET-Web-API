@@ -15,6 +15,8 @@ namespace AnimeReview.Interfaces
 
         bool CreateReview(Review review);
 
+        bool UpdateReview(Review review);
+
         bool Save();
     }
 }

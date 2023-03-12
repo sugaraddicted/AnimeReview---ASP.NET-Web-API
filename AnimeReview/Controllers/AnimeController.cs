@@ -12,12 +12,14 @@ namespace AnimeReview.Controllers
     public class AnimeController : Controller
     {
         private readonly IAnimeRepository _animeRepository;
+        private readonly IReviewRepository _reviewRepository;
 
         private readonly IMapper _mapper;
 
-        public AnimeController(IAnimeRepository animeRepository, IMapper mapper)
+        public AnimeController(IAnimeRepository animeRepository, IReviewRepository reviewRepository, IMapper mapper)
         {
             _animeRepository = animeRepository; 
+            _reviewRepository = reviewRepository;
             _mapper = mapper;
         }
         [HttpGet]
@@ -125,6 +127,37 @@ namespace AnimeReview.Controllers
             }
 
             return Ok("Successfully Updated");
+        }
+
+        [HttpDelete("{animeId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteAnime(int animeId)
+        {
+            if (!_animeRepository.AnimeExists(animeId))
+            {
+                return NotFound();
+            }
+
+            var reviewsToDelete = _reviewRepository.GetReviewsOfAnime(animeId);
+
+            if (!_reviewRepository.DeleteReviews(reviewsToDelete.ToList()))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting anime");
+            }
+
+            var animeToDelete = _animeRepository.GetAnimeById(animeId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_animeRepository.DeleteAnime(animeToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting anime");
+            }
+
+            return Ok("Successfully Deleted");
         }
     }
 }

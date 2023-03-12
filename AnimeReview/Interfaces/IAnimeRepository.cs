@@ -18,6 +18,8 @@ namespace AnimeReview.Interfaces
 
         bool UpdateAnime(int authorId, int genreid, Anime anime);
 
+        bool DeleteAnime(Anime anime);
+
         bool Save();
     }
 }

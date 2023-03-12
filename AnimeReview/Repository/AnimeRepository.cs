@@ -73,5 +73,11 @@ namespace AnimeReview.Repository
             _context.Update(anime);
             return Save();
         }
+
+        public bool DeleteAnime(Anime anime)
+        {
+            _context.Remove(anime);
+            return Save();
+        }
     }
 }

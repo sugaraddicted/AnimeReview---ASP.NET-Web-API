@@ -19,6 +19,12 @@ namespace AnimeReview.Repository
             return Save();
         }
 
+        public bool DeleteGenre(Genre genre)
+        {
+            _context.Remove(genre);
+            return Save();
+        }
+
         public bool GenreExists(int id)
         {
             return _context.Genres.Any(x => x.Id == id);    

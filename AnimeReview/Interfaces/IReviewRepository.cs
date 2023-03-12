@@ -17,6 +17,10 @@ namespace AnimeReview.Interfaces
 
         bool UpdateReview(Review review);
 
+        bool DeleteReviews(List<Review> reviews);  
+
+        bool DeleteReview(Review review);  
+
         bool Save();
     }
 }

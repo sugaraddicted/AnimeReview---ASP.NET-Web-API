@@ -51,5 +51,11 @@ namespace AnimeReview.Repository
             _context.Update(country);
             return Save();
         }
+
+        public bool DeleteCountry(Country country)
+        {
+            _context.Remove(country);
+            return Save();
+        }
     }
 }

@@ -94,5 +94,37 @@ namespace AnimeReview.Controllers
 
             return Ok("Successfully created");
         }
+
+        [HttpPut("{animeId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateAnime(int animeId,
+            [FromQuery] int authorId,
+            [FromQuery] int genreId, 
+            [FromBody] AnimeDto updatedAnime)
+        {
+            if (updatedAnime == null)
+                return BadRequest(ModelState);
+
+            if (animeId != updatedAnime.Id)
+                return BadRequest(ModelState);
+
+            if (!_animeRepository.AnimeExists(animeId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var animeMap = _mapper.Map<Anime>(updatedAnime);
+
+            if (!_animeRepository.UpdateAnime(authorId, genreId, animeMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating the anime");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully Updated");
+        }
     }
 }

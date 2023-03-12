@@ -16,6 +16,8 @@ namespace AnimeReview.Interfaces
 
         bool CreateAnime(int genreId, string authorname, string countryName, Anime anime);
 
+        bool UpdateAnime(int authorId, int genreid, Anime anime);
+
         bool Save();
     }
 }

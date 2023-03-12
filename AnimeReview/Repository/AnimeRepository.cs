@@ -67,5 +67,11 @@ namespace AnimeReview.Repository
             var save = _context.SaveChanges();
             return save > 0 ? true : false;
         }
+
+        public bool UpdateAnime(int authorId, int genreId, Anime anime)
+        {
+            _context.Update(anime);
+            return Save();
+        }
     }
 }

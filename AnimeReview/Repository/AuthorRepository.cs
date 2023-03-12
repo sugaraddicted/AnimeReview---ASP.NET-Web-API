@@ -52,5 +52,11 @@ namespace AnimeReview.Repository
             _context.Update(author);
             return Save();
         }
+
+        public bool DeleteAuthor(Author author)
+        {
+            _context.Remove(author);
+            return Save();
+        }
     }
 }

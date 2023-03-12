@@ -18,5 +18,7 @@ namespace AnimeReview.Interfaces
 
         bool UpdateAuthor(Author author);
 
+        bool DeleteAuthor(Author author);
+
     }
 }

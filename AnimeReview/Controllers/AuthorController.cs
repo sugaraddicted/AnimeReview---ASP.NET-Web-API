@@ -123,5 +123,29 @@ namespace AnimeReview.Controllers
             return Ok("Successfully Updated");
         }
 
+        [HttpDelete("{authorId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteAuthor(int authorId)
+        {
+            if (!_authorRepository.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+
+            var authorToDelete = _authorRepository.GetAuthorById(authorId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_authorRepository.DeleteAuthor(authorToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting author");
+            }
+
+            return Ok("Successfully Deleted");
+        }
+
     }
 }

@@ -46,5 +46,11 @@ namespace AnimeReview.Repository
             var save = _context.SaveChanges();
             return save > 0 ? true : false; 
         }
+
+        public bool UpdateReviewer(Reviewer reviewer)
+        {
+           _context.Update(reviewer);
+            return Save();
+        }
     }
 }
